@@ -1,0 +1,5 @@
+# format version number, currently 3; this line is compulsory!
+version=3
+# If your package is located on sourceforge, use the following format
+# difficult mirror system.
+http://sf.net/libhdate/libhdate-(.*)\.tar\.gz

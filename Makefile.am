@@ -5,7 +5,7 @@ SUBDIRS = po docs src examples bindings
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libhdate.pc
 
-libhdatedocdir = ${prefix}/share/doc/libhdate
+libhdatedocdir = ${prefix}/share/doc/libhdate1
 libhdatedoc_DATA = \
 	README\
 	COPYING\
