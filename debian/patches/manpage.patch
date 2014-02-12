@@ -1,0 +1,145 @@
+Description: Fix a hyphen used as minus sign (thanks lintian)
+Author: Lior Kaplan <kaplan@debian.org>
+
+--- a/docs/man/man1/hcal.1
++++ b/docs/man/man1/hcal.1
+@@ -7,13 +7,13 @@
+ .B hcal
+ [options] [coordinates [timezone]] [[mm] yyyy]
+ .TP
+-coordinates: -l [NS]yy[.yyy] -L [EW]xx[.xxx]
++coordinates: \-l [NS]yy[.yyy] \-L [EW]xx[.xxx]
+ .RE
+ .RS 7
+-             -l [NS]yy[:mm[:ss]] -L [EW]xx[:mm[:ss]]
++             \-l [NS]yy[:mm[:ss]] \-L [EW]xx[:mm[:ss]]
+ .RE
+ .RS 7
+-timezone:    -z nn[( .nn | :mm )]
++timezone:    \-z nn[( .nn | :mm )]
+ .PP
+ .SH "DESCRIPTION"
+ .B hcal
+@@ -54,7 +54,7 @@
+ .RE
+ .RS 7
+ .B \ \ \ --no-visual
+-\   option -bidi as a default there
++\   option --bidi as a default there
+ .TP 18
+ .B \-c --colorize
+ output in calming, muted tones
+@@ -81,7 +81,7 @@
+ \     over-ride config file setting
+ .TP 18
+ .B \-H --hebrew
+-output Hebrew information in Hebrew, in 'logical' sequence. If this displays in reverse for you, use option -b
++output Hebrew information in Hebrew, in 'logical' sequence. If this displays in reverse for you, use option \-b
+ .TP
+ .B \-I --israel
+ override a diaspora default. Only relevant if hcal is using location information indicating other than an Israeli timezone
+@@ -153,7 +153,7 @@
+ \ Other Israeli National days
+ .RE
+ .P
+-Use the -f (--footnote) option to have hcal describe what any particular day is marking.
++Use the \-f (--footnote) option to have hcal describe what any particular day is marking.
+ .SS LOCATIONS 
+ If you want 
+ .B hcal
+@@ -174,7 +174,7 @@
+ Timezone   Default city    Lattitude  Longitude
+ .RE
+ .RS 12
+--5      New York City      40        \-74
++\-5      New York City      40        \-74
+ .RE
+ .RS 12
+  0      London             51          0
+@@ -191,19 +191,19 @@
+ .PP
+ Useful locations and time zones
+ .RS 6
+-Jerusalem   31, 35, 2      Buenos Aires 34,  -58, -3
++Jerusalem   31, 35, 2      Buenos Aires 34,  \-58, \-3
+ .RE
+ .RS 6
+ Tel Aviv    32, 34, 2      Hong Kong    22,  114,  8
+ .RE
+ .RS 6
+-Haifa       32, 34, 2      Los Angeles  34, -118, -8
++Haifa       32, 34, 2      Los Angeles  34, \-118, \-8
+ .RE
+ .RS 6
+-Beer Sheva  31, 34, 2      Sao Paolo    23, -46,  -3
++Beer Sheva  31, 34, 2      Sao Paolo    23, \-46,  \-3
+ .RE
+ .RS 6
+-Ashdod      31, 34, 2      Toronto      43, -79   -5
++Ashdod      31, 34, 2      Toronto      43, \-79   \-5
+ .RS 6
+ .RE
+ Tiberias    32, 35, 2      
+--- a/docs/man/man3/hdate.h.3
++++ b/docs/man/man3/hdate.h.3
+@@ -999,7 +999,7 @@
+ .PP
+ helper function to find hebrew locale \fBReturns:\fP
+ .RS 4
+-0 - latin locale, -1 - hebrew locale 
++0 - latin locale, \-1 - hebrew locale 
+ .RE
+ .PP
+ 
+--- a/docs/man/man1/hdate.1
++++ b/docs/man/man1/hdate.1
+@@ -9,13 +9,13 @@
+ .B hdate
+ [options] [coordinates [timezone]] [ julian_day ]
+ .TP
+-coordinates: -l [NS]yy[.yyy] -L [EW]xx[.xxx]
++coordinates: \-l [NS]yy[.yyy] \-L [EW]xx[.xxx]
+ .RE
+ .RS 7
+-             -l [NS]yy[:mm[:ss]] -L [EW]xx[:mm[:ss]]
++             \-l [NS]yy[:mm[:ss]] \-L [EW]xx[:mm[:ss]]
+ .RE
+ .RS 7
+-timezone:    -z nn[( .nn | :mm )]
++timezone:    \-z nn[( .nn | :mm )]
+ .PP
+ .SH "DESCRIPTION"
+ .B hdate
+@@ -140,7 +140,7 @@
+ Timezone   Default city    Lattitude  Longitude
+ .RE
+ .RS 12
+--5      New York City      40        \-74
++\-5      New York City      40        \-74
+ .RE
+ .RS 12
+  0      London             51          0
+@@ -157,19 +157,19 @@
+ .PP
+ Useful locations and time zones
+ .RS 6
+-Jerusalem   31, 35, 2      Buenos Aires 34,  -58, -3
++Jerusalem   31, 35, 2      Buenos Aires 34,  \-58, \-3
+ .RE
+ .RS 6
+ Tel Aviv    32, 34, 2      Hong Kong    22,  114,  8
+ .RE
+ .RS 6
+-Haifa       32, 34, 2      Los Angeles  34, -118, -8
++Haifa       32, 34, 2      Los Angeles  34, \-118, \-8
+ .RE
+ .RS 6
+-Beer Sheva  31, 34, 2      Sao Paolo    23, -46,  -3
++Beer Sheva  31, 34, 2      Sao Paolo    23, \-46,  \-3
+ .RE
+ .RS 6
+-Ashdod      31, 34, 2      Toronto      43, -79   -5
++Ashdod      31, 34, 2      Toronto      43, \-79   \-5
+ .RS 6
+ .RE
+ Tiberias    32, 35, 2      

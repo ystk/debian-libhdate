@@ -1,0 +1,91 @@
+Description: Fix build from source when linking with "ld --as-needed"
+Author: Matthias Klose <doko@ubuntu.com>
+
+--- a/bindings/perl/Makefile.in
++++ b/bindings/perl/Makefile.in
+@@ -403,7 +403,7 @@
+ 
+ @WITH_PERL_TRUE@hdate.so: hdate_wrap.cxx
+ @WITH_PERL_TRUE@	g++ -fpic -c hdate_wrap.cxx $(PE_CFLAGS) -I$(top_srcdir)/src
+-@WITH_PERL_TRUE@	g++ -shared ../../src/.libs/libhdate.so hdate_wrap.o -o hdate.so
++@WITH_PERL_TRUE@	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o hdate.so
+ 
+ @WITH_PERL_TRUE@hdate_wrap.cxx: hdate.i
+ @WITH_PERL_TRUE@	swig -perl -c++ hdate.i
+--- a/bindings/perl/Makefile.am
++++ b/bindings/perl/Makefile.am
+@@ -12,7 +12,7 @@
+ 
+ hdate.so: hdate_wrap.cxx
+ 	g++ -fpic -c hdate_wrap.cxx $(PE_CFLAGS) -I$(top_srcdir)/src
+-	g++ -shared ../../src/.libs/libhdate.so hdate_wrap.o -o hdate.so
++	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o hdate.so
+ 
+ hdate_wrap.cxx: hdate.i
+ 	swig -perl -c++ hdate.i
+--- a/bindings/php/Makefile.in
++++ b/bindings/php/Makefile.in
+@@ -403,7 +403,7 @@
+ 
+ @WITH_PHP_TRUE@hdate.so: hdate_wrap.cpp
+ @WITH_PHP_TRUE@	g++ -I$(top_srcdir)/src `php-config --includes` -fpic -c hdate_wrap.cpp
+-@WITH_PHP_TRUE@	gcc -shared ../../src/.libs/libhdate.so hdate_wrap.o -lstdc++ -o hdate.so
++@WITH_PHP_TRUE@	gcc -shared hdate_wrap.o ../../src/.libs/libhdate.so -lstdc++ -o hdate.so
+ 
+ @WITH_PHP_TRUE@hdate_wrap.cpp: hdate.i
+ @WITH_PHP_TRUE@	swig -php5 -c++ hdate.i
+--- a/bindings/php/Makefile.am
++++ b/bindings/php/Makefile.am
+@@ -12,7 +12,7 @@
+ 
+ hdate.so: hdate_wrap.cpp
+ 	g++ -I$(top_srcdir)/src `php-config --includes` -fpic -c hdate_wrap.cpp
+-	gcc -shared ../../src/.libs/libhdate.so hdate_wrap.o -lstdc++ -o hdate.so
++	gcc -shared hdate_wrap.o ../../src/.libs/libhdate.so -lstdc++ -o hdate.so
+ 
+ hdate_wrap.cpp: hdate.i
+ 	swig -php5 -c++ hdate.i
+--- a/bindings/ruby/Makefile.in
++++ b/bindings/ruby/Makefile.in
+@@ -403,7 +403,7 @@
+ 
+ @WITH_RUBY_TRUE@hdate.so: hdate_wrap.cxx
+ @WITH_RUBY_TRUE@	g++ -fpic -fno-strict-aliasing -g -O2 -c hdate_wrap.cxx $(RU_CFLAGS) -I$(top_srcdir)/src
+-@WITH_RUBY_TRUE@	gcc -shared ../../src/.libs/libhdate.so hdate_wrap.o -rdynamic -Wl,-export-dynamic -lruby$(RU_VERSION) -lpthread -ldl -lcrypt -lm -lc -lstdc++ -o hdate.so
++@WITH_RUBY_TRUE@	gcc -shared hdate_wrap.o ../../src/.libs/libhdate.so -rdynamic -Wl,-export-dynamic -lruby$(RU_VERSION) -lpthread -ldl -lcrypt -lm -lc -lstdc++ -o hdate.so
+ 
+ @WITH_RUBY_TRUE@hdate_wrap.cxx: hdate.i
+ @WITH_RUBY_TRUE@	swig -c++ -ruby hdate.i
+--- a/bindings/ruby/Makefile.am
++++ b/bindings/ruby/Makefile.am
+@@ -12,7 +12,7 @@
+ 
+ hdate.so: hdate_wrap.cxx
+ 	g++ -fpic -fno-strict-aliasing -g -O2 -c hdate_wrap.cxx $(RU_CFLAGS) -I$(top_srcdir)/src
+-	gcc -shared ../../src/.libs/libhdate.so hdate_wrap.o -rdynamic -Wl,-export-dynamic -lruby$(RU_VERSION) -lpthread -ldl -lcrypt -lm -lc -lstdc++ -o hdate.so
++	gcc -shared hdate_wrap.o ../../src/.libs/libhdate.so -rdynamic -Wl,-export-dynamic -lruby$(RU_VERSION) -lpthread -ldl -lcrypt -lm -lc -lstdc++ -o hdate.so
+ 
+ hdate_wrap.cxx: hdate.i
+ 	swig -c++ -ruby hdate.i
+--- a/bindings/python/Makefile.in
++++ b/bindings/python/Makefile.in
+@@ -403,7 +403,7 @@
+ 
+ @WITH_PYTHON_TRUE@_hdate.so: hdate_wrap.cxx
+ @WITH_PYTHON_TRUE@	g++ -fpic -c hdate_wrap.cxx $(PY_CFLAGS) -I$(top_srcdir)/src
+-@WITH_PYTHON_TRUE@	g++ -shared ../../src/.libs/libhdate.so hdate_wrap.o -o _hdate.so
++@WITH_PYTHON_TRUE@	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o _hdate.so
+ 
+ @WITH_PYTHON_TRUE@hdate_wrap.cxx: hdate.i
+ @WITH_PYTHON_TRUE@	swig -python -c++ hdate.i
+--- a/bindings/python/Makefile.am
++++ b/bindings/python/Makefile.am
+@@ -12,7 +12,7 @@
+ 
+ _hdate.so: hdate_wrap.cxx
+ 	g++ -fpic -c hdate_wrap.cxx $(PY_CFLAGS) -I$(top_srcdir)/src
+-	g++ -shared ../../src/.libs/libhdate.so hdate_wrap.o -o _hdate.so
++	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o _hdate.so
+ 
+ hdate_wrap.cxx: hdate.i
+ 	swig -python -c++ hdate.i

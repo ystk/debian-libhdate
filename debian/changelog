@@ -1,3 +1,53 @@
+libhdate (1.6-1) unstable; urgency=low
+
+  * New upstream release
+  * Drop libhdate-php package
+
+ -- Lior Kaplan <kaplan@debian.org>  Sat, 07 Apr 2012 19:31:21 +0300
+
+libhdate (1.4.20-4) unstable; urgency=low
+
+  * Migrate from dh_pycentral to dh_python2 (Closes: #616863)
+
+ -- Lior Kaplan <kaplan@debian.org>  Fri, 29 Jul 2011 15:45:24 +0200
+
+libhdate (1.4.20-3) unstable; urgency=low
+
+  * Drop *.la from -dev package per policy 10.2 (Closes: #621670)
+
+ -- Lior Kaplan <kaplan@debian.org>  Fri, 08 Apr 2011 01:53:14 +0300
+
+libhdate (1.4.20-2) unstable; urgency=low
+
+  * Fix build failure with ld --as-needed (Closes: #604780)
+    - Apply patch from Matthias Klose (Ubuntu).
+
+ -- Lior Kaplan <kaplan@debian.org>  Tue, 05 Apr 2011 22:50:16 +0300
+
+libhdate (1.4.20-1) unstable; urgency=low
+
+  * New upstream release
+    - Inlcudes man page patch (removing it from debian/patches)
+
+ -- Lior Kaplan <kaplan@debian.org>  Sat, 13 Nov 2010 23:46:24 +0200
+
+libhdate (1.4.19-2) unstable; urgency=low
+
+  * Rename python bindings to python-hdate (Thanks to Luca Falavigna).
+
+ -- Lior Kaplan <kaplan@debian.org>  Wed, 03 Nov 2010 23:34:02 +0200
+
+libhdate (1.4.19-1) unstable; urgency=low
+
+  * New upstream release
+    - Returns null if no parasha is returned (Closes: #583092)
+  * Switch to dpkg-source 3.0 (quilt) format (Closes: #583235)
+  * debian/control:
+    - Rename libhdate-python to python-libhdate (Closes: #497774)
+    - Provide PHP bindings with php-libhdate.
+
+ -- Lior Kaplan <kaplan@debian.org>  Sun, 31 Oct 2010 23:44:16 +0200
+
 libhdate (1.4.12-2) unstable; urgency=low
 
   * Remove libhdate-pascal package as fpc was removed from Lenny

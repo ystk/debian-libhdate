@@ -41,7 +41,12 @@ config.status: configure
 	# Add here commands to configure the package.
 	CFLAGS="$(CFLAGS)" ./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --with-perl-sitelib-dir=/usr/lib/perl5 --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info
 
-build: build-stamp
+build: build-arch build-indep
+
+build-arch: build-stamp
+
+build-indep: build-stamp
+
 build-stamp:  config.status
 	dh_testdir
 
@@ -66,7 +71,7 @@ clean:
 install: build
 	dh_testdir -s
 	dh_testroot -s
-	dh_clean -k -s
+	dh_prep -s
 	dh_installdirs -s
 
 	# Add here commands to install the package into debian/tmp
@@ -85,14 +90,14 @@ binary-arch: build install
 
 	dh_installdocs -s
 	dh_installexamples -s -XMakefile -X.libs -X.deps -X.o #don't copy all the files in the example dir
-	dh_movefiles -s
+	dh_install -s
+	dh_python2 -s --no-guessing-versions
 	dh_installman -s
 	dh_link -s
 	dh_strip -s
 	dh_compress -s
 	dh_fixperms -s
 	dh_perl -s
-	dh_pycentral -s
 	dh_makeshlibs -s -V
 	dh_installdeb -s
 	dh_shlibdeps -s

@@ -106,24 +106,24 @@ hdate_get_utc_sun_time_deg (int day, int month, int year, double latitude, doubl
 	latitude = M_PI * latitude / 180.0;
 	
 	/* the sun real time diff from noon at sunset/rise in radians */
-  errno = 0;
+	errno = 0;
 	ha = acos (cos (sunrise_angle) / (cos (latitude) * cos (decl)) - tan (latitude) * tan (decl));
 	
-  /* check for too high altitudes and return negative values */
-  if (errno == EDOM)
-  {
-    *sunrise = -720;
-	  *sunset = -720;
-    
-    return;
-  }
-  
+	/* check for too high altitudes and return negative values */
+	if (errno == EDOM)
+	{
+		*sunrise = -720;
+		*sunset = -720;
+		
+		return;
+	}
+	
 	/* we use minutes, ratio is 1440min/2pi */
 	ha = 720.0 * ha / M_PI;
 	
 	/* get sunset/rise times in utc wall clock in minutes from 00:00 time */
-	*sunrise = (int)(720.0 + 4.0 * longitude - ha - eqtime);
-	*sunset = (int)(720.0 + 4.0 * longitude + ha - eqtime);
+	*sunrise = (int)(720.0 - 4.0 * longitude - ha - eqtime);
+	*sunset = (int)(720.0 - 4.0 * longitude + ha - eqtime);
 	
 	return;
 }

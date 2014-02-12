@@ -2,4 +2,4 @@
 version=3
 # If your package is located on sourceforge, use the following format
 # difficult mirror system.
-http://sf.net/libhdate/libhdate-(.*)\.tar\.gz
+http://sf.net/libhdate/libhdate-(.*)\.tar\.bz2
