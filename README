@@ -1,73 +1,90 @@
-Libhdate - 
+Libhdate, hcal, hdate
+=====================
 
-LibHdate is a small C,C++ library for Hebrew calendar, dates, holidays, and reading sequence
+CONTENTS
+========
+1] Description
+2] Brief highlights of this update
 
-This library of functions are using the sorce code from
-Amos Shapir's "hdate" package fixed and patched by Nadav Har'El.
-See the original package's README (hdate_README)
 
-LibHdate is a small C,C++ library for Hebrew dates,
-holidays, and reading sequence (parasha). It is using 
-the sorce code from Amos Shapir's "hdate" package fixed and 
-patched by Nadav Har'El. The Torah reading sequence
-is from tables by Zvi Har'El.
+1] Description
+==============
+LibHdate is a small library for the Hebrew calendar, dates, holidays,
+and reading sequence. It is written in C and includes bindings for
+pascal, perl, python, php, ruby.
 
-15 Adar II 5763 Shusan Purim, 19 March 2003
-kobi zamir <kzamir@walla.co.il>
--------------------------------------
+hcal and hdate are small example command line programs written in C.
 
-see USE file for usage.
+Refer to the following files:
+INSTALL      instructions how to install this package
+USE          basic example of how to use one of the library functions
+             in a C program, how to compile it, and how to run it.
+NEWS         press-release style information of the current release
+Changelog    more detailed list of project activity over many releases
 
--------------------------------------
--------------------------------------
+Refer to the man pages and examples directory for further documentation
+and examples.
 
-Below is the original README file from hdate 0.5p by Amos Shapir.
 
---------------------------------------
+2] Brief highlights of this update
+==================================
+This release brings many new options, features, and bug fixes to the two example
+programs hcal and hdate. The changes to the underlying function library include
+a few minor bug fixes, deprecation of a series of string functions in favor
+of a single new one with better memory allocation, and hard-coding of core
+elements of the Hebrew localization so that Hebrew can be displayed in all
+locales. The documentation in the man pages and in the new configuration
+file should be sufficient.
 
-This is Amos Shapir's "hdate" package fixed and patched by Nadav Har'El.
-Below is the original package's README - see NEWS for what changed.
+2.1] selected highlights
+========================
 
-------------------------------------------------------------------------------
-This is the 5th distribution of hdate/hcal.  It should be portable
-anywhere, but for machines which have sizeof(int) != sizeof(long), you
-may have to change a few 'int's to 'long', and suffix 'L' to some
-constants; sorry, I have no way to tell which.  It also expects the UNIX
-"time.h" structures, but that shouldn't be hard to change to fit other
-systems.  If you port the code to any other system, please send the
-diffs to the author for inclusion in the next release.
+hcal
+- introduced config file $XDG_CONFIG_HOME/hcal/hcalrc or ~/.config/hcal/hcalrc
+- option --menu -m to prompt user for user-defined menu selections from config file
+- option --candles and --havdalah take optional numeric arguments to modify the default minhag.
+- remove dependency of Hebrew on locale environment variables
+- new feature: sunset-aware to highlight correct hebrew date
+- new options: shabbat times and readings
+- new feature: location-awareness (options -l -L -z)
+- basic location-guessing based upon time zone
+- coordinates may now also be in form degrees, minutes, seconds and be delimited by :, ', or "
+- coordinates may now include compass directions N, S, E, W.
+- time zone may now include fractional hours, or minutes (delimited by :, ', or ")
+- highlight current day in reverse video
+- compress width of display on screen
+- print Gregorian and Hebrew months on one line
+- option three-month to display previous and next months with current
+- option three-month with year displays four rows, three columns
+- option colorize to display data in, um, color
+- option footnote to explain the month's holidays
+- option force-hebrew for non-hebrew locales
+- basic diaspora-awareness based on system time-zone
 
-The files included  herein are:
-README - this file.
-explain - an explanation of the algorithm.
-hdate.6 - the man page (nroff/troff source).
-Makefile
-hdate.h - common definitions.
-hdate.c - main source file for hdate.
-hcal.c - main source file for hcal.
-hcom.c - code common to both hdate & hcal.
+hdate
+- introduced config file $XDG_CONFIG_HOME/hdate/hdaterc or ~/.config/hdate/hdaterc
+- option --menu -m to prompt user for user-defined menu selections from config file
+- option --candles and --havdalah take optional numeric arguments to modify the default minhag.
+- remove dependency of Hebrew on locale environment variables
+- new feature: sunset-aware to highlight correct hebrew date
+- coordinates may now also be in form degrees, minutes, seconds and be delimited by :, ', or "
+- coordinates may now include compass directions N, S, E, W.
+- time zone may now include fractional hours, or minutes (delimited by :, ', or ")
+- Hebrew information can optionally display in Hebrew characters in all locales
+- option --sunset-aware, prints tomorrow's Hebrew date and info (for today only) if after sunset
+- option --table, prints data in csv format, suitable for spreadsheets, awk, etc.
 
-Compilation options:
 
-HEBREW - make a version that prints on a Hebrew printer/terminal, given
-the "-h" flag.  All Hebrew words are initialized in left-to-right
-lower-case letters, and passed through the function rev() for
-conversion.  I have included a function which reverses them to
-right-to-left order, and optionally converts to the ISO-8859/8 standard
-or IBM representation.  You may need to write your own rev() function to
-convert to what your printer expects, or else delete it and pipe the
-output through "rev", "tr" or "sed".
-
-USA_DATE - make hdate accept the arguments as "month day year" instead
-of the default "day month year" (note that hdate.6 has to be changed to
-document this order).
-
-	Good Luck,
-	Amos Shapir
-July 1992 - Tamuz 5752
-
-Net: amos@cs.cs.huji.ac.il
-Paper: The Hebrew Univ. of Jerusalem, Dept. of Comp. Science.
-       Givat-Ram, Jerusalem 91904, Israel
-Tel: +972 2 585706               GEO: 35 11 46 E / 31 46 21 N
+libhdate
+- new function hdate_string
+- DEPRECATION: hdate_get_day_string is now only a wrapper for hdate_string
+- DEPRECATION: hdate_get_hebrew_month_string is now only a wrapper for hdate_string
+- DEPRECATION: hdate_get_holyday_string is now only a wrapper for hdate_string
+- DEPRECATION: hdate_get_month_string is now only a wrapper for hdate_string
+- DEPRECATION: hdate_get_parasha_string is now only a wrapper for hdate_string
+- DEPRECATION: hdate_get_omer_string is now only a wrapper for hdate_string
+- DEPRECATION: hdate_get_int_string_ is now only a wrapper for hdate_string
+- BUGFIX hdate_get_format_date, hdate-get_day_string, hdate_get_int_string no longer
+  write to static local buffers. Callers to those functions must free().
+- BUGFIX made all functions const-correct and fixed resulting conflicts
 
