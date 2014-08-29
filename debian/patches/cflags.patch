@@ -1,0 +1,82 @@
+Description: Pass variables set by Debian build system
+Author: Tzafrir Cohen <tzafrir@debian.org>
+
+The Debian build system sets several variables (LDFLAGS, CFLAGS,
+CPPFLAGS).
+
+* CFLAGS was overriden by the configure script.
+* The perl and python bindings were not using the values of those
+  variables.
+
+--- a/configure.in
++++ b/configure.in
+@@ -33,7 +33,6 @@ AC_C_CONST
+ AC_CONFIG_MACRO_DIR([m4])
+ AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
+ 
+-CFLAGS=
+ LIBS=-lm
+ 
+ dnl =======================================================================================
+--- a/configure
++++ b/configure
+@@ -12466,7 +12466,6 @@ fi
+ 
+ 
+ 
+-CFLAGS=
+ LIBS=-lm
+ 
+ 
+--- a/bindings/perl/Makefile.am
++++ b/bindings/perl/Makefile.am
+@@ -11,8 +11,8 @@ all-am: hdate.so
+ 	
+ 
+ hdate.so: hdate_wrap.cxx
+-	g++ -fpic -c hdate_wrap.cxx $(PE_CFLAGS) -I$(top_srcdir)/src
+-	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o hdate.so
++	g++ -fpic -c hdate_wrap.cxx $(CFLAGS) $(CPPFLAGS) $(PE_CFLAGS) -I$(top_srcdir)/src
++	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o hdate.so $(LDFLAGS)
+ 
+ hdate_wrap.cxx: hdate.i
+ 	swig -perl -c++ hdate.i
+--- a/bindings/perl/Makefile.in
++++ b/bindings/perl/Makefile.in
+@@ -402,8 +402,8 @@ uninstall-am:
+ @WITH_PERL_TRUE@all-am: hdate.so
+ 
+ @WITH_PERL_TRUE@hdate.so: hdate_wrap.cxx
+-@WITH_PERL_TRUE@	g++ -fpic -c hdate_wrap.cxx $(PE_CFLAGS) -I$(top_srcdir)/src
+-@WITH_PERL_TRUE@	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o hdate.so
++@WITH_PERL_TRUE@	g++ -fpic -c hdate_wrap.cxx $(CFLAGS) $(CPPFLAGS) $(PE_CFLAGS) -I$(top_srcdir)/src
++@WITH_PERL_TRUE@	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o hdate.so $(LDFLAGS)
+ 
+ @WITH_PERL_TRUE@hdate_wrap.cxx: hdate.i
+ @WITH_PERL_TRUE@	swig -perl -c++ hdate.i
+--- a/bindings/python/Makefile.am
++++ b/bindings/python/Makefile.am
+@@ -11,8 +11,8 @@ all-am: _hdate.so
+ 	
+ 
+ _hdate.so: hdate_wrap.cxx
+-	g++ -fpic -c hdate_wrap.cxx $(PY_CFLAGS) -I$(top_srcdir)/src
+-	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o _hdate.so
++	g++ -fpic -c hdate_wrap.cxx $(CPPFLAGS) $(CFLAGS) $(PY_CFLAGS) -I$(top_srcdir)/src
++	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o _hdate.so $(LDFLAGS)
+ 
+ hdate_wrap.cxx: hdate.i
+ 	swig -python -c++ hdate.i
+--- a/bindings/python/Makefile.in
++++ b/bindings/python/Makefile.in
+@@ -402,8 +402,8 @@ uninstall-am:
+ @WITH_PYTHON_TRUE@all-am: _hdate.so
+ 
+ @WITH_PYTHON_TRUE@_hdate.so: hdate_wrap.cxx
+-@WITH_PYTHON_TRUE@	g++ -fpic -c hdate_wrap.cxx $(PY_CFLAGS) -I$(top_srcdir)/src
+-@WITH_PYTHON_TRUE@	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o _hdate.so
++@WITH_PYTHON_TRUE@	g++ -fpic -c hdate_wrap.cxx $(CPPFLAGS) $(CFLAGS) $(PY_CFLAGS) -I$(top_srcdir)/src
++@WITH_PYTHON_TRUE@	g++ -shared hdate_wrap.o ../../src/.libs/libhdate.so -o _hdate.so $(LDFLAGS)
+ 
+ @WITH_PYTHON_TRUE@hdate_wrap.cxx: hdate.i
+ @WITH_PYTHON_TRUE@	swig -python -c++ hdate.i

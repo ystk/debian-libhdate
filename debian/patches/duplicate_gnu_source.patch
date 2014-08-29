@@ -1,0 +1,53 @@
+Description: _GNU_SOURCE is already set in autoconf.
+Author: Tzafrir Cohen <Tzafrir@debian.org>
+
+--- a/examples/hcal/hdate.c
++++ b/examples/hcal/hdate.c
+@@ -20,7 +20,6 @@
+  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+-#define _GNU_SOURCE		// For mempcpy, asprintf
+ #include <hdate.h>		// For hebrew date
+ //#include "../../src/hdate.h"
+ #include <stdlib.h>		// For atoi, getenv, setenv
+--- a/examples/hcal/local_functions.c
++++ b/examples/hcal/local_functions.c
+@@ -25,7 +25,6 @@
+ /**************************************************
+ *   functions to support hcal and hdate
+ **************************************************/
+-#define _GNU_SOURCE		// For mempcpy, asprintf
+ 
+ #include <hdate.h>		// For hebrew date
+ //include "../../src/hdate.h"
+--- a/examples/hcal/hcal.c
++++ b/examples/hcal/hcal.c
+@@ -20,7 +20,6 @@
+  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+-#define _GNU_SOURCE		// for mempcpy
+ #include <stdio.h>		// For printf
+ #include <hdate.h>		// For hebrew date
+ //#include "../../src/hdate.h"
+--- a/src/deprecated.c
++++ b/src/deprecated.c
+@@ -16,7 +16,6 @@
+  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+-#define _GNU_SOURCE
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+--- a/src/hdate_strings.c
++++ b/src/hdate_strings.c
+@@ -18,7 +18,6 @@
+  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+-#define _GNU_SOURCE
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>

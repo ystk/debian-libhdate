@@ -1,0 +1,17 @@
+Description: Use an explicit format string when printing config file
+Author: Tzafrir Cohen <tzafrir@debian.org>
+
+The call to print the default configuration text to the configuration file
+should use an explicit "%s". However the text comes from the code and does
+not happen to contain any '%' sign, so it is not explitable.
+--- a/examples/hcal/local_functions.c
++++ b/examples/hcal/local_functions.c
+@@ -676,7 +676,7 @@ FILE* get_config_file(	const char* confi
+ 			error(0, errno, "%s: %s", N_("failure attempting to create config file"), config_file_path);
+ 			return;
+ 		}
+-		fprintf(config_file, default_config_file_text);
++		fprintf(config_file, "%s", default_config_file_text);
+ 		error(0,0,"%s: %s",N_("config file created"), config_file_path);
+ 		if (fclose(config_file) != 0) error(0,errno,"%s %s",N_("failure closing"),config_file_name);
+ 	}

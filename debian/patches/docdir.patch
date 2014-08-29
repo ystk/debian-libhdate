@@ -3,7 +3,7 @@ Author: Debian Hebrew Packaging Team <debian-hebrew-package@lists.alioth.debian.
 
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -5,7 +5,7 @@
+@@ -12,7 +12,7 @@ SUBDIRS = po docs src examples bindings
  pkgconfigdir = $(libdir)/pkgconfig
  pkgconfig_DATA = libhdate.pc
  

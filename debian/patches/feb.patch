@@ -1,0 +1,83 @@
+Description: February may take more than 4 calendar lines
+Author: Tzafrir Cohen <tzafrir@debian.org>
+Bug-Debian: http://bugs.debian.org/696814
+
+Fix the check for the number of separate weeks in each month (calender
+lines to print). The code considered February to always have four such
+weeks when in fact it normally spreads to 5.
+
+The original and simple patch by Yair Yoram did not account for leap
+years in which February is 29 days (using __isleap()). Doing so requires
+passing along the year number. While I was at it, I simplified the code
+in the function.
+
+--- a/examples/hcal/hcal.c
++++ b/examples/hcal/hcal.c
+@@ -1161,26 +1161,27 @@ int print_calendar ( const int current_m
+ 	int previous_year, next_year;
+ 	int jd_current_month, jd_previous_month, jd_next_month;
+ 
+-	void how_many_calendar_lines( int month, int start_dow )
++	void how_many_calendar_lines( int month, int start_dow, int year)
+ 	{
++		int days_in_month = 31;
++		int gross_days_of_month; /* incl. slack of previous month */
++
+ 		switch (month)
+ 		{
+ 		case  4:
+ 		case  6:
+ 		case  9:
+-		case 11:	if (start_dow == 7) max_calendar_lines = 6;
+-					else if (max_calendar_lines == 4) max_calendar_lines = 5;
+-					break;
+-		case  1:
+-		case  3:
+-		case  5:
+-		case  7:
+-		case  8:
+-		case 10:
+-		case 12:	if (start_dow > 5) max_calendar_lines = 6;
+-					else if (max_calendar_lines == 4) max_calendar_lines = 5;
+-					break;
++		case 11:
++			days_in_month = 30; break;
++		case  2:	
++			if (__isleap(year))
++				days_in_month = 29;
++			else
++				days_in_month = 28;
++			break;
+ 		}
++		gross_days_of_month = days_in_month + (start_dow - 1);
++		max_calendar_lines = (gross_days_of_month + 6) / 7;
+ 	}
+ 
+ 	/*********************************************************
+@@ -1190,7 +1191,7 @@ int print_calendar ( const int current_m
+ 	*********************************************************/
+ 	hdate_set_gdate (&h, 1, current_month, current_year);
+ 	jd_current_month = h.hd_jd - h.hd_dw + 1;
+-	how_many_calendar_lines( h.gd_mon, h.hd_dw );
++	how_many_calendar_lines( h.gd_mon, h.hd_dw, h.gd_year);
+ 
+ 	/*********************************************************
+ 	*  three months, side-by-side
+@@ -1212,7 +1213,7 @@ int print_calendar ( const int current_m
+ 		}
+ 		hdate_set_gdate (&h, 1, previous_month, previous_year);
+ 		jd_previous_month = h.hd_jd - h.hd_dw + 1;
+-		how_many_calendar_lines( h.gd_mon, h.hd_dw );
++		how_many_calendar_lines( h.gd_mon, h.hd_dw, h.gd_year);
+ 
+ 		/*********************************************************
+ 		*  next month
+@@ -1229,7 +1230,7 @@ int print_calendar ( const int current_m
+ 		}
+ 		hdate_set_gdate (&h, 1, next_month, next_year);
+ 		jd_next_month = h.hd_jd - h.hd_dw + 1;
+-		how_many_calendar_lines( h.gd_mon, h.hd_dw );
++		how_many_calendar_lines( h.gd_mon, h.hd_dw, h.gd_year);
+ 	}
+ 
+ 

@@ -1,0 +1,22 @@
+Author: Adam Borowski <kilobyte@angband.pl>
+Description: fix sizes issues manifested in x32
+Bug-Debian: http://bugs.debian.org/719808
+
+libhdate calls localtime(long), when its interface requires time_t.
+
+If sizeof(long) == sizeof(time_t), all is ok.
+If sizeof(long) > sizeof(time_t), it will work on little-endian, use some
+uninitialized memory on big-endian.
+If sizeof(long) < sizeof(time_t), it will trample nearby memory.
+
+--- a/src/hdate_julian.c
++++ b/src/hdate_julian.c
+@@ -367,7 +367,7 @@ hdate_set_gdate (hdate_struct * h, int d
+ 	if ((d == 0) || (m == 0))
+ 	{
+ 		struct tm *tm;
+-		long t;
++		time_t t;
+ 		/* FIXME: day start at 6:00 or 12:00 like in Gregorian cal. ? */
+ 		t = time (0);
+ 		tm = localtime (&t);

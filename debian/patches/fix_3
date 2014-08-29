@@ -1,0 +1,15 @@
+Description: Fixes an endless with hcal -3
+Author: Tzafrir Cohen <tzafrir@debian.org>
+
+On hcal -3 we get padding < 0, and hence an endless loop as it is unsigned.
+--- a/examples/hcal/hcal.c
++++ b/examples/hcal/hcal.c
+@@ -656,7 +656,7 @@ void print_header_month_line_stdout( con
+ 	/**************************************************
+ 	*  print padding
+ 	*************************************************/
+-	for (j = 1; j < padding; j++) printf(" ");
++	for (j = 1; j < (int)padding; j++) printf(" ");
+ 
+ 
+ 	/**************************************************

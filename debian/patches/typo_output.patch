@@ -1,0 +1,145 @@
+Description: typo: "ouput" (Lintian)
+Author: Tzafrir Cohen <tzafrir@debian.org>
+
+--- a/examples/hcal/hdate.c
++++ b/examples/hcal/hdate.c
+@@ -102,7 +102,7 @@ VERSION=2.00\n\
+ # and its (limited, and maybe biased) of the dominant Jewish community\n\
+ # in that timezone. When hdate is forced to guess, it alerts the user\n\
+ # with a message that includes the guessed location.\n\
+-# hdate's guesses will also affect its default behaviour for ouput of\n\
++# hdate's guesses will also affect its default behaviour for output of\n\
+ # Shabbat times, parshiot, and choice of Israel/diaspora hoidays.\n\
+ #SUNSET_AWARE=TRUE\n\
+ # LATITUDE and LONGITUDE may be in decimal format or in the form\n\
+--- a/examples/hcal/hcal.c
++++ b/examples/hcal/hcal.c
+@@ -162,7 +162,7 @@ VERSION=2.00\n\
+ # and its (limited, and maybe biased) of the dominant Jewish community\n\
+ # in that timezone. When hcal is forced to guess, it alerts the user\n\
+ # with a message that includes the guessed location.\n\
+-# hcal's guesses will also affect its default behaviour for ouput of\n\
++# hcal's guesses will also affect its default behaviour for output of\n\
+ # Shabbat times, parshiot, and choice of Israel/diaspora hoidays\n\
+ #SUNSET_AWARE=TRUE\n\
+ # LATITUDE and LONGITUDE may be in decimal format or in the form\n\
+--- a/po/es_MX.po
++++ b/po/es_MX.po
+@@ -677,7 +677,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hcal is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hcal's guesses will also affect its default behaviour for ouput of\n"
++"# hcal's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"
+@@ -934,7 +934,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hdate is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hdate's guesses will also affect its default behaviour for ouput of\n"
++"# hdate's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays.\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"
+--- a/po/fr.po
++++ b/po/fr.po
+@@ -661,7 +661,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hcal is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hcal's guesses will also affect its default behaviour for ouput of\n"
++"# hcal's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"
+@@ -918,7 +918,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hdate is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hdate's guesses will also affect its default behaviour for ouput of\n"
++"# hdate's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays.\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"
+--- a/po/he.po
++++ b/po/he.po
+@@ -658,7 +658,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hcal is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hcal's guesses will also affect its default behaviour for ouput of\n"
++"# hcal's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"
+@@ -915,7 +915,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hdate is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hdate's guesses will also affect its default behaviour for ouput of\n"
++"# hdate's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays.\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"
+--- a/po/libhdate.pot
++++ b/po/libhdate.pot
+@@ -659,7 +659,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hcal is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hcal's guesses will also affect its default behaviour for ouput of\n"
++"# hcal's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"
+@@ -916,7 +916,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hdate is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hdate's guesses will also affect its default behaviour for ouput of\n"
++"# hdate's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays.\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"
+--- a/po/ru.po
++++ b/po/ru.po
+@@ -662,7 +662,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hcal is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hcal's guesses will also affect its default behaviour for ouput of\n"
++"# hcal's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"
+@@ -919,7 +919,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hdate is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hdate's guesses will also affect its default behaviour for ouput of\n"
++"# hdate's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays.\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"
+--- a/po/sv.po
++++ b/po/sv.po
+@@ -661,7 +661,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hcal is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hcal's guesses will also affect its default behaviour for ouput of\n"
++"# hcal's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"
+@@ -918,7 +918,7 @@ msgid ""
+ "# and its (limited, and maybe biased) of the dominant Jewish community\n"
+ "# in that timezone. When hdate is forced to guess, it alerts the user\n"
+ "# with a message that includes the guessed location.\n"
+-"# hdate's guesses will also affect its default behaviour for ouput of\n"
++"# hdate's guesses will also affect its default behaviour for output of\n"
+ "# Shabbat times, parshiot, and choice of Israel/diaspora hoidays.\n"
+ "#SUNSET_AWARE=TRUE\n"
+ "# LATITUDE and LONGITUDE may be in decimal format or in the form\n"

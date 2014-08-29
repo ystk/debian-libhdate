@@ -1,3 +1,39 @@
+libhdate (1.6-2.1) unstable; urgency=medium
+
+  [ Damyan Ivanov ]
+  * Non-maintainer upload with maintainer's permission
+
+  [ gregor herrmann ]
+  * Fix "hardcodes /usr/lib/perl5"
+    - use $Config{vendorarch} in debian/rules and debian/libhdate-perl.*
+    - make the latter two executable
+    (Closes: #752348)
+
+ -- Damyan Ivanov <dmn@debian.org>  Tue, 29 Jul 2014 06:38:35 +0000
+
+libhdate (1.6-2) unstable; urgency=low
+
+  * Patch fix_3: fix an endless loop with hcal -3 (Closes: #692039).
+  * Patch time_t: fixes a size issue on x32 (Closes: #719808).
+  * Switch to dh.
+  * Compat level 9.
+  * autotools-dev for new config.{sub,guess} for e.g. arm64.
+  * A symbols file for libhdate1.
+  * typo_output.patch: fix a typo "ouput" (Lintian).
+  * Bump standards version: 3.9.4.
+  * cflags.patch: pass along build-flags set by deb-helpers.
+  * As a result of building with warnings and hardening, several other
+    fixes: 
+    - missing_format.patch - missing a format string for fprintf.
+    - duplicate_gnu_source.patch - _GNU_SOURCE was set both in autoconf
+      and in files.
+    - nested_extern.patch - Don't #include files inside a function.
+    - size_t.patch - int vs. size_t issues.
+  * feb.patch: calendars of February mat have more than 4 weeks (Closes:
+    #696814).
+
+ -- Tzafrir Cohen <tzafrir@debian.org>  Sat, 21 Sep 2013 14:17:40 +0300
+
 libhdate (1.6-1) unstable; urgency=low
 
   * New upstream release

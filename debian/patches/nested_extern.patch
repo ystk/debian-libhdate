@@ -1,0 +1,31 @@
+Description: Do not include headers inside a function.
+Author: Tzafrir Cohen <tzafrir@debian.org>
+
+If you #include unistd.h inside a function, the declerations made in it
+can be considered nested functions.
+--- a/examples/hcal/local_functions.c
++++ b/examples/hcal/local_functions.c
+@@ -641,6 +641,11 @@ file. Attempting to create a config file
+ }
+ 
+ 
++#include <pwd.h>			// for get pwuid
++#include <unistd.h>			// for getuid
++#include <sys/stat.h>
++#include <sys/types.h>		// for mkdir,
++
+ /************************************************************
+ * Open config file, or create one
+ *  - returns filepointer or NULL
+@@ -650,11 +655,6 @@ FILE* get_config_file(	const char* confi
+ 						const char* config_file_name,
+ 						const char* default_config_file_text )
+ {
+-#include <pwd.h>			// for get pwuid
+-#include <unistd.h>			// for getuid
+-#include <sys/stat.h>
+-#include <sys/types.h>		// for mkdir,
+-
+ 	size_t path_len;
+ 
+ 	char* config_home_path_name = "";

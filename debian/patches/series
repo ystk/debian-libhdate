@@ -1,3 +1,11 @@
 docdir.patch
 ld-as-needed.patch
 manpage.patch
+fix_3
+time_t.patch
+typo_output.patch
+cflags.patch
+duplicate_gnu_source.patch
+size_t.patch
+nested_extern.patch
+missing_format.patch

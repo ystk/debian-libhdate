@@ -1,0 +1,47 @@
+Description: size_t vars need %d in printf. %*s needs int
+Author: Tzafrir Cohen <tzafrir@debian.org>
+--- a/examples/hcal/local_functions.c
++++ b/examples/hcal/local_functions.c
+@@ -247,11 +247,11 @@ void revstr( char *source, const size_t
+ 
+ #define DEBUG 0
+ #if DEBUG
+-printf("\nrevstr: entry: sourcelen = %d, source = %s\n",source_len, source);
++printf("\nrevstr: entry: sourcelen = %zd, source = %s\n",source_len, source);
+ #endif
+ 
+ 	if (source == NULL) {error(0,0,"revstr: source buffer pointer is NULL"); exit(0);};
+-	if (source_len <= 0) {error(0,0,"revstr: source_len parameter invalid, %d",source_len); exit(0);};
++	if (source_len <= 0) {error(0,0,"revstr: source_len parameter invalid, %zd",source_len); exit(0);};
+ 
+ 	size_t i,j;
+ 	char *temp_buff;
+@@ -272,7 +272,7 @@ printf("\nrevstr: entry: sourcelen = %d,
+ 	memcpy(source, temp_buff, source_len);
+ 	source[source_len] = '\0';
+ #if DEBUG
+-printf("\nrevstr: before free(tempbuff): sourcelen = %d, source = %s\n",source_len, source);
++printf("\nrevstr: before free(tempbuff): sourcelen = %zd, source = %s\n",source_len, source);
+ #endif
+ 	free(temp_buff);
+ 	return;
+--- a/examples/hcal/hcal.c
++++ b/examples/hcal/hcal.c
+@@ -1135,7 +1135,7 @@ void print_week( int jd, const int month
+ 					// padding - FIXME - spaces are single-byte, while
+ 					// the Hebrew characters are two bytes
+ 					const int margin_max = 15;
+-					printf("%*s%s", (margin_max - shabbat_name_str_len/2)," ", shabbat_name_buffer);
++					printf("%*s%s", (int) (margin_max - shabbat_name_str_len/2)," ", shabbat_name_buffer);
+ 
+ 					free(shabbat_name_buffer);
+ 				}
+@@ -1344,7 +1344,7 @@ int print_month ( const int month, const
+ 					// padding - FIXME - spaces are single-byte, while
+ 					// the Hebrew characters are two bytes
+ 					const int margin_max = 16; // 15 fails because of jabotinsky in july
+-					printf("%*s%s\n", (margin_max - holiday_str_len/2)," ", holiday_buffer);
++					printf("%*s%s\n", (int) (margin_max - holiday_str_len/2)," ", holiday_buffer);
+ 
+ 					free(holiday_buffer);
+ 				}
