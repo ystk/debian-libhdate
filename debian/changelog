@@ -1,3 +1,11 @@
+libhdate (1.6-2.2) unstable; urgency=medium
+
+  * Non-maintainer upload with maintainer's permission
+  * Add dh-autoreconf to fix FTBFS on ppc64el. Closes: #757112, #757136
+  * Add multi-arch. Closes: #757113, #727006
+
+ -- Andreas Barth <aba@ayous.org>  Wed, 10 Sep 2014 15:03:37 +0000
+
 libhdate (1.6-2.1) unstable; urgency=medium
 
   [ Damyan Ivanov ]

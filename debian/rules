@@ -3,7 +3,7 @@
 ARCHLIB := $(shell perl -MConfig -e 'print $$Config{vendorarch}')
 
 %:
-	dh $* --with python2,autotools_dev
+	dh $* --with python2,autoreconf
 
 override_dh_auto_configure:
 	dh_auto_configure -- --with-perl-sitelib-dir=$(ARCHLIB)

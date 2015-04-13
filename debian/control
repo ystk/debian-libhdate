@@ -5,12 +5,13 @@ Maintainer: Debian Hebrew Packaging Team <debian-hebrew-package@lists.alioth.deb
 Uploaders: Baruch Even <baruch@debian.org>, Lior Kaplan <kaplan@debian.org>, Shachar Shemesh <shachar@debian.org>, Tzafrir Cohen <tzafrir@debian.org>
 Vcs-Svn: svn://anonscm.debian.org/debian-hebrew/pkg/libhdate
 Vcs-Browser: http://anonscm.debian.org/viewvc/debian-hebrew/pkg/libhdate
-Build-Depends: debhelper (>= 9), swig, python-dev (>= 2.6.6-3~), autotools-dev
+Build-Depends: debhelper (>= 9), swig, python-dev (>= 2.6.6-3~), dh-autoreconf
 Standards-Version: 3.9.4
 Homepage: http://libhdate.sourceforge.net/
 
 Package: libhdate-dev
 Architecture: any
+Multi-Arch: same
 Depends: libhdate1 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
 Description: Provides a library that help use hebrew dates (development files)
  LibHdate is a small C,C++ library for Hebrew dates,
@@ -25,6 +26,7 @@ Description: Provides a library that help use hebrew dates (development files)
 Package: python-hdate
 Section: python
 Architecture: any
+Multi-Arch: foreign
 Provides: ${python:Provides}
 Depends: libhdate1 (= ${binary:Version}), ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Description: Provides a library that help use hebrew dates (python bindings)
@@ -52,10 +54,24 @@ Description: Provides a library that help use hebrew dates (perl bindings)
 Package: libhdate1
 Section: libs
 Architecture: any
+Multi-Arch: same
+Pre-Depends: multiarch-support
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: libhdate0
 Replaces: libhdate0
 Description: Provides a library that help use hebrew dates
+ LibHdate is a small C,C++ library for Hebrew dates,
+ holidays, and reading sequence (parasha). It is using 
+ the source code from Amos Shapir's "hdate" package fixed 
+ and patched by Nadav Har'El. The Torah reading sequence
+ is from tables by Zvi Har'El.
+
+Package: hdate
+Section: utils
+Architecture: any
+Depends: libhdate1 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Replaces: libhdate0 (<< 1.6-1ubuntu1)
+Description: Provides the hcal and hdate binaries that help use hebrew dates
  LibHdate is a small C,C++ library for Hebrew dates,
  holidays, and reading sequence (parasha). It is using 
  the source code from Amos Shapir's "hdate" package fixed 
